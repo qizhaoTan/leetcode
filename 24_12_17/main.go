@@ -48,10 +48,10 @@ func calc(trie *TrieTree, target string) int {
 
 func minValidStrings(words []string, target string) int {
 	trie := NewTrieTree(words)
-	s := to(trie, target)       // j = s[i] 表示在i这个位置，最长可以到达j这个位置，如果i==j，说明死路
+	s := to(trie, target)       // j = s[i] 表示在i这个位置，最长可以到达j这个位置
 	dp := make([]int, len(s)+1) // 动态规划 dp[i] 表示从0到i至少需要多少次
 	for idx, val := range s {
-		if idx != 0 && dp[idx] == 0 {
+		if idx != 0 && dp[idx] == 0 { // 如果发现到达dp[idx]==0，说明无法到达上一个位置，那么可以判定为不可能满足条件
 			return -1
 		}
 
